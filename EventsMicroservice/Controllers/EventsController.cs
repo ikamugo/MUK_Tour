@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using EventsMicroservice.Data.Models;
+using EventsMicroservice.Data.Repositories.Interfaces;
+using EventsMicroservice.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,24 +15,47 @@ namespace EventsMicroservice.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
+        private readonly IMapper _mapper;
+        private readonly IEventsRepository _eventsRepo;
+        private readonly IPostersRepository _postersRepo;
+
+        public EventsController(IMapper mapper, IEventsRepository eventsRepo, IPostersRepository postersRepo)
+        {
+            _mapper = mapper;
+            _eventsRepo = eventsRepo;
+            _postersRepo = postersRepo;
+        }
+
+
         // GET: api/Events
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<ListEventDto> Get()
         {
-            return new string[] { "value1", "value2" };
+            var events = _eventsRepo.Find(x => x.Date >= DateTime.Now);
+            return _mapper.Map<IEnumerable<ListEventDto>>(events);
         }
 
         // GET: api/Events/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public EventDetailDto Get(string id)
         {
-            return "value";
+            var scheduledEvent = _eventsRepo.Get(id);
+            var posters = _postersRepo.Find(x => x.ScheduledEventId == id);
+            var eventDto = _mapper.Map<EventDetailDto>(scheduledEvent);
+            eventDto.Posters = posters.Select(x => x.Id).ToArray();
+            return eventDto;
         }
 
         // POST: api/Events
         [HttpPost]
-        public void Post([FromBody] string value)
+        public EventDetailDto Post([FromBody] CreateEventDto eventDto)
         {
+            var newEvent = _mapper.Map<ScheduledEvent>(eventDto);
+            Request.Headers.TryGetValue("User-Id", out var userId);
+            newEvent.CreatedByUserId = Guid.Parse(userId);
+
+            var result = _eventsRepo.Add(newEvent);
+            return _mapper.Map<EventDetailDto>(result);
         }
 
         // PUT: api/Events/5
