@@ -35,6 +35,7 @@ namespace EventsMicroservice
             services.AddControllers()
                 .AddJsonOptions(opts =>
                 {
+                    opts.JsonSerializerOptions.IgnoreNullValues = true;
                     opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                     opts.JsonSerializerOptions.Converters.Add(new JsonDateTimeConverter());
                     opts.JsonSerializerOptions.Converters.Add(new JsonTimeSpanConverter());

@@ -37,9 +37,13 @@ namespace EventsMicroservice.Controllers
 
         // GET: api/Events/5
         [HttpGet("{id}")]
-        public EventDetailDto Get(string id)
+        public ActionResult<EventDetailDto> Get(string id)
         {
             var scheduledEvent = _eventsRepo.Get(id);
+            if (scheduledEvent == null)
+            {
+                return NotFound();
+            }
             var posters = _postersRepo.Find(x => x.ScheduledEventId == id);
             var eventDto = _mapper.Map<EventDetailDto>(scheduledEvent);
             eventDto.Posters = posters.Select(x => x.Id).ToArray();
@@ -60,14 +64,32 @@ namespace EventsMicroservice.Controllers
 
         // PUT: api/Events/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<EventDetailDto> Put(string id, [FromBody] EventDetailDto eventDto)
         {
+            var scheduledEvent = _eventsRepo.Get(id);
+            if(scheduledEvent == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(eventDto, scheduledEvent);
+            _eventsRepo.Update(scheduledEvent);
+            return _mapper.Map<EventDetailDto>(scheduledEvent);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(string id)
         {
+            var scheduledEvent = _eventsRepo.Get(id);
+            Request.Headers.TryGetValue("User-Id", out var userId);
+            if(scheduledEvent.CreatedByUserId == Guid.Parse(userId))
+            {
+                _eventsRepo.Remove(scheduledEvent);
+                return Ok();
+            }
+
+            return Unauthorized();
         }
     }
 }

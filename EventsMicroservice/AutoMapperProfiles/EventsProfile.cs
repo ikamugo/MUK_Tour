@@ -14,7 +14,7 @@ namespace EventsMicroservice.AutoMapperProfiles
         {
             CreateMap<CreateEventDto, ScheduledEvent>();
             CreateMap<ScheduledEvent, ListEventDto>();
-            CreateMap<ScheduledEvent, EventDetailDto>();
+            CreateMap<ScheduledEvent, EventDetailDto>().ReverseMap();
         }
     }
 }
