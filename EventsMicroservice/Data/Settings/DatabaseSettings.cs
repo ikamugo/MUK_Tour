@@ -11,5 +11,6 @@ namespace EventsMicroservice.Data.Settings
         public string CategoriesCollection { get; set; }
         public string EventsCollection { get; set; }
         public string PostersCollection { get; set; }
+        public string VenuesCollection { get; set; }
     }
 }

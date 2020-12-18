@@ -50,6 +50,7 @@ namespace EventsMicroservice
             services.AddSingleton<ICategoriesRepository, CategoriesRepository>();
             services.AddSingleton<IEventsRepository, EventsRepository>();
             services.AddSingleton<IPostersRepository, PostersRepository>();
+            services.AddSingleton<IVenuesRepository, VenuesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

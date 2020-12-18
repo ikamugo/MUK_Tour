@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventsMicroservice.Data.Models;
 
 namespace EventsMicroservice.ViewModels
 {
@@ -12,6 +13,6 @@ namespace EventsMicroservice.ViewModels
         public string Title { get; set; }
         public DateTime Date { get; set; }
         public double Price { get; set; }
-        public string Venue { get; set; }
+        public Venue Venue { get; set; }
     }
 }
