@@ -7,6 +7,6 @@ namespace ServiceProvidersMicroservice.Models
 {
     public class DiscoverApiResponse
     {
-        public IEnumerable<NearByPlace> Items { get; set; }
+        public List<NearByPlace> Items { get; set; }
     }
 }

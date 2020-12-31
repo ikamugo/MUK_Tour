@@ -40,10 +40,12 @@ namespace EventsMicroservice.Controllers
         public ActionResult<EventDetailDto> Get(string id)
         {
             var scheduledEvent = _eventsRepo.Get(id);
+            
             if (scheduledEvent == null)
             {
                 return NotFound();
             }
+
             var posters = _postersRepo.Find(x => x.ScheduledEventId == id);
             var eventDto = _mapper.Map<EventDetailDto>(scheduledEvent);
             eventDto.Posters = posters.Select(x => x.Id).ToArray();
