@@ -1,1 +1,16 @@
-<p>weather works!</p>
+<h3>Current Conditions</h3>
+<div class="row">
+  <div class="col-md-6 mb-3">
+    <app-current-conditions></app-current-conditions>
+  </div>
+  <div class="col-md-6 mb-3">
+    <app-current-report></app-current-report>
+  </div>
+</div>
+<h3 class="mt-4">Weekly Forecast</h3>
+<div class="d-flex">
+  <div class="p-1" *ngFor="let item of forecast">
+    <app-forecast-day [name]="item.day" [min]="item.min" [max]="item.max"></app-forecast-day>
+  </div>
+</div>
+

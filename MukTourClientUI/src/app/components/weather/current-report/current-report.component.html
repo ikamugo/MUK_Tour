@@ -1,0 +1,54 @@
+<div class="card h-100">
+  <div class="card-body">
+    <div class="row mb-5">
+      <div class="col-4">
+        <app-report-item
+          [icon]="'fa-sun'"
+          [value]="'6:45 AM'"
+          [label]="'Sunrise'"
+        ></app-report-item>
+      </div>
+      <div class="col-4">
+        <app-report-item
+          [icon]="'fa-thermometer-half'"
+          [value]="'17'"
+          [label]="'Temperature'"
+          [unit]="'0'"
+        ></app-report-item>
+      </div>
+      <div class="col-4">
+        <app-report-item
+          [icon]="'fa-tachometer-alt'"
+          [value]="'754'"
+          [label]="'Pressure'"
+          [unit]="'mm'"
+        ></app-report-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <app-report-item
+          [icon]="'fa-tint'"
+          [value]="'87'"
+          [label]="'Humidity'"
+          [unit]="'%'"
+        ></app-report-item>
+      </div>
+      <div class="col-4">
+        <app-report-item
+          [icon]="'fa-wind'"
+          [value]="'25'"
+          [label]="'Wind'"
+          [unit]="'kt'"
+        ></app-report-item>
+      </div>
+      <div class="col-4">
+        <app-report-item
+          [icon]="'fa-sun'"
+          [value]="'6:46 PM'"
+          [label]="'Sunset'"
+        ></app-report-item>
+      </div>
+    </div>
+  </div>
+</div>

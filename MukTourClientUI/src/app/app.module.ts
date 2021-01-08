@@ -13,6 +13,10 @@ import { EditEventComponent } from './components/events/edit-event/edit-event.co
 import { WeatherComponent } from './components/weather/weather.component';
 import { ListRestaurantsComponent } from './components/restaurants/list-restaurants/list-restaurants.component';
 import { ListProvidersComponent } from './components/service-providers/list-providers/list-providers.component';
+import { ForecastDayComponent } from './components/weather/forecast-day/forecast-day.component';
+import { CurrentConditionsComponent } from './components/weather/current-conditions/current-conditions.component';
+import { CurrentReportComponent } from './components/weather/current-report/current-report.component';
+import { ReportItemComponent } from './components/weather/current-report/report-item/report-item.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { ListProvidersComponent } from './components/service-providers/list-prov
     EditEventComponent,
     WeatherComponent,
     ListRestaurantsComponent,
-    ListProvidersComponent
+    ListProvidersComponent,
+    ForecastDayComponent,
+    CurrentConditionsComponent,
+    CurrentReportComponent,
+    ReportItemComponent
   ],
   imports: [
     BrowserModule,
