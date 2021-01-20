@@ -16,6 +16,7 @@ namespace ApiGateway
 {
     public class Startup
     {
+        private readonly string _corsPolicy = "AllowAnyOrigin";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,10 +30,20 @@ namespace ApiGateway
             services.AddControllers();
             services.AddOcelot(Configuration);
 
+            // Enable CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy(_corsPolicy,
+                    builder => builder
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -43,12 +54,14 @@ namespace ApiGateway
 
             app.UseAuthorization();
 
+            app.UseCors(_corsPolicy);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            app.UseOcelot().Wait();
+            await app.UseOcelot();
         }
     }
 }
