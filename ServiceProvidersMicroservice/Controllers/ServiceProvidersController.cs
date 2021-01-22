@@ -21,48 +21,20 @@ namespace ServiceProvidersMicroservice.Controllers
             _locationService = locationService;
         }
 
-        [HttpGet]
+        [HttpGet("categories")]
         public string[] Get()
         {
             return new string[]
             {
-                "churches", "hospitals", "hostels", "libraries", "mosques"
+                "church", "hospital", "hostel", "library", "mosque"
             };
         }
 
-        [HttpGet("churches")]
-        public async Task<IEnumerable<ServiceProvider>> GetChurchesAsync()
+        [HttpGet("{category}")]
+        public async Task<IEnumerable<ServiceProvider>> GetServiceProvidersAsync(string category)
         {
-            return GetServiceProviders(await _locationService.GetNearBy(_coordinates, "church"));
-        }
-
-        [HttpGet("hospitals")]
-        public async Task<IEnumerable<ServiceProvider>> GetHospitalsAsync()
-        {
-            return GetServiceProviders(await _locationService.GetNearBy(_coordinates, "hospital"));
-        }
-
-        [HttpGet("hostels")]
-        public async Task<IEnumerable<ServiceProvider>> GetHostelsAsync()
-        {
-            return GetServiceProviders(await _locationService.GetNearBy(_coordinates, "hostel"));
-        }
-
-        [HttpGet("libraries")]
-        public async Task<IEnumerable<ServiceProvider>> GetLibrariesAsync()
-        {
-            return GetServiceProviders(await _locationService.GetNearBy(_coordinates, "library"));
-        }
-
-        [HttpGet("mosques")]
-        public async Task<IEnumerable<ServiceProvider>> GetMosquesAsync()
-        {
-            return GetServiceProviders(await _locationService.GetNearBy(_coordinates, "mosque"));
-        }
-
-        private IEnumerable<ServiceProvider> GetServiceProviders(IEnumerable<NearByPlace> nearByPlaces)
-        {
-            return nearByPlaces
+            var nearbyProviders = await _locationService.GetNearBy(_coordinates, category);
+            return nearbyProviders
                 .Select(x => new ServiceProvider
                 {
                     Name = x.Address.Label,
