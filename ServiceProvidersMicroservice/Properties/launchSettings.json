@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/serviceproviders",
+      "launchUrl": "api/serviceproviders/categories",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "ServiceProvidersMicroservice": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/serviceproviders",
+      "launchUrl": "api/serviceproviders/categories",
       "applicationUrl": "http://localhost:7003",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
