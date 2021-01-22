@@ -12,7 +12,6 @@ namespace EventsMicroservice.ViewModels
         public string Description { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
-        public string Location { get; set; }
         public string Organizer { get; set; }
         public IEnumerable<OrganizerContact> OrganizerContacts { get; set; }
     }
