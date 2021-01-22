@@ -168,8 +168,14 @@ namespace RestaurantsMicroservice.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<string>("OpenHours")
+                        .HasColumnType("text");
+
                     b.Property<string>("Phone")
                         .HasColumnType("text");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 
@@ -225,13 +231,13 @@ namespace RestaurantsMicroservice.Migrations
             modelBuilder.Entity("RestaurantsMicroservice.Data.Models.Menu", b =>
                 {
                     b.HasOne("RestaurantsMicroservice.Data.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Menus")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RestaurantsMicroservice.Data.Models.Restaurant", "Restaurant")
-                        .WithMany()
+                        .WithMany("Menus")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -266,12 +272,17 @@ namespace RestaurantsMicroservice.Migrations
             modelBuilder.Entity("RestaurantsMicroservice.Data.Models.SpecialMenu", b =>
                 {
                     b.HasOne("RestaurantsMicroservice.Data.Models.Menu", "Menu")
-                        .WithMany()
+                        .WithMany("Specials")
                         .HasForeignKey("MenuId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Menu");
+                });
+
+            modelBuilder.Entity("RestaurantsMicroservice.Data.Models.Category", b =>
+                {
+                    b.Navigation("Menus");
                 });
 
             modelBuilder.Entity("RestaurantsMicroservice.Data.Models.Location", b =>
@@ -282,11 +293,15 @@ namespace RestaurantsMicroservice.Migrations
             modelBuilder.Entity("RestaurantsMicroservice.Data.Models.Menu", b =>
                 {
                     b.Navigation("Poster");
+
+                    b.Navigation("Specials");
                 });
 
             modelBuilder.Entity("RestaurantsMicroservice.Data.Models.Restaurant", b =>
                 {
                     b.Navigation("Logo");
+
+                    b.Navigation("Menus");
                 });
 #pragma warning restore 612, 618
         }
