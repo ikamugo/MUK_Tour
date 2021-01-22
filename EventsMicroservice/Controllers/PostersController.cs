@@ -25,6 +25,10 @@ namespace EventsMicroservice.Controllers
         public IActionResult Get(string id)
         {
             var poster = _repository.Get(id);
+            if(poster == null)
+            {
+                return NotFound();
+            }
             return File(poster.BinaryData, poster.ContentType, poster.Name);
         }
 
