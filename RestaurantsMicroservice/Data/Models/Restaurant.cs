@@ -19,6 +19,8 @@ namespace RestaurantsMicroservice.Data.Models
         public string Email { get; set; }
         [JsonIgnore]
         public Guid ManagerId { get; set; }
+        public double Rating { get; set; }
+        public string OpenHours { get; set; }
         public IEnumerable<Menu> Menus { get; set; }
     }
 }
