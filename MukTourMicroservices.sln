@@ -15,7 +15,9 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LocationMapsMicroservice", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{3B820ACD-FEC4-40F6-86BF-0736C00144D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService", "IdentityService\IdentityService.csproj", "{858A20A7-E07E-47DD-87AD-83BDBA850227}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService", "IdentityService\IdentityService.csproj", "{858A20A7-E07E-47DD-87AD-83BDBA850227}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherService", "WeatherService\WeatherService.csproj", "{4774E65A-68E6-4584-B33E-25174D8DF780}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{858A20A7-E07E-47DD-87AD-83BDBA850227}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{858A20A7-E07E-47DD-87AD-83BDBA850227}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{858A20A7-E07E-47DD-87AD-83BDBA850227}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4774E65A-68E6-4584-B33E-25174D8DF780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4774E65A-68E6-4584-B33E-25174D8DF780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4774E65A-68E6-4584-B33E-25174D8DF780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4774E65A-68E6-4584-B33E-25174D8DF780}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
