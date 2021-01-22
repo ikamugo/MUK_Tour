@@ -1,0 +1,18 @@
+<div class="product-img">
+  <img
+    src="assets/images/events_medium.jpg"
+    alt="Product Image"
+    class="img-size-50"
+  />
+</div>
+<div class="product-info">
+  <a class="product-title" [routerLink]="['details', scheduledEvent.id]">
+    {{ scheduledEvent.title }} <span class="badge badge-warning float-right">{{ scheduledEvent.price | number }}</span>
+  </a>
+  <span class="product-description">
+    {{ scheduledEvent.category }}
+  </span>
+  <span class="product-description">
+    {{ scheduledEvent.date | date }}
+  </span>
+</div>

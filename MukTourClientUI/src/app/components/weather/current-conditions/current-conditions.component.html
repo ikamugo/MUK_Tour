@@ -3,22 +3,28 @@
     <div class="row">
       <div class="col-7">
         <img
-          src="assets/images/weather/weezle_cloud_thunder_rain.png"
-          style="max-width: 100%"
+          [src]="
+            'assets/images/weather/' +
+            forecast.forecastWeather.condition.code +
+            '.png'
+          "
+          class="img-fluid"
         />
       </div>
       <div class="col-5">
-        <h5 class="text-center">Sunday, Jan 03</h5>
-        <h6 class="text-center">Thunderstorms</h6>
-        <div class="text-center mt-5" style="font-size: 50px;">
-          23<span>&#176;</span>C
+        <h5 class="text-center">{{ forecast.date | date: "EEEE, MMM dd" }}</h5>
+        <h6 class="text-center">
+          {{ forecast.forecastWeather.condition.text }}
+        </h6>
+        <div class="text-center mt-5" style="font-size: 50px">
+          {{ forecast.forecastWeather.temperature }}<span>&#176;</span>C
         </div>
-        <div class="mt-5" style="font-size: larger;">
+        <div class="mt-5" style="font-size: larger">
           <div class="float-left">
-            Min {{ '17' }}<span>&#176;</span>C
+            Min {{ forecast.forecastWeather.low }}<span>&#176;</span>C
           </div>
           <div class="float-right">
-            Max {{ '23' }}<span>&#176;</span>C
+            Max {{ forecast.forecastWeather.high }}<span>&#176;</span>C
           </div>
         </div>
       </div>

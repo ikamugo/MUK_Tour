@@ -17,6 +17,14 @@ import { ForecastDayComponent } from './components/weather/forecast-day/forecast
 import { CurrentConditionsComponent } from './components/weather/current-conditions/current-conditions.component';
 import { CurrentReportComponent } from './components/weather/current-report/current-report.component';
 import { ReportItemComponent } from './components/weather/current-report/report-item/report-item.component';
+import { EventDetailsComponent } from './components/events/event-details/event-details.component';
+import { EventSummaryComponent } from './components/events/list-events/event-summary/event-summary.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TimePipe } from './_shared/pipes/time.pipe';
+import { AgmCoreModule } from '@agm/core';
+import { MapComponent } from './components/map/map.component';
+import { MapServiceProvidersComponent } from './components/service-providers/map-service-providers/map-service-providers.component';
+import { RestaurantDetailsComponent } from './components/restaurants/restaurant-details/restaurant-details.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +42,21 @@ import { ReportItemComponent } from './components/weather/current-report/report-
     ForecastDayComponent,
     CurrentConditionsComponent,
     CurrentReportComponent,
-    ReportItemComponent
+    ReportItemComponent,
+    EventDetailsComponent,
+    EventSummaryComponent,
+    TimePipe,
+    MapComponent,
+    MapServiceProvidersComponent,
+    RestaurantDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBtNcvziQJT_0YiN4MvTW2PT6VuX4ZeQTg'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

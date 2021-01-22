@@ -1,81 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { WeatherForecast } from 'src/app/_shared/models/weather-forecast.model';
+import { WeatherService } from 'src/app/_shared/services/weather.service';
 
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.scss']
+  styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit {
-
-  forecast = [
-
-    {
-      day: 'Mon',
-      min: 14,
-      max: 28
-    },
-    {
-      day: 'Tue',
-      min: 12,
-      max: 23
-    },
-    {
-      day: 'Wed',
-      min: 10,
-      max: 20
-    },
-    {
-      day: 'Thu',
-      min: 10,
-      max: 20
-    },
-    {
-      day: 'Fri',
-      min: 10,
-      max: 20
-    },
-    {
-      day: 'Sat',
-      min: 13,
-      max: 14
-    },
-  ];
-
-  forecast2 = [
-    {
-      day: 'Mon',
-      min: 14,
-      max: 28
-    },
-    {
-      day: 'Tue',
-      min: 12,
-      max: 23
-    },
-    {
-      day: 'Wed',
-      min: 10,
-      max: 20
-    },
-    {
-      day: 'Thu',
-      min: 10,
-      max: 20
-    },
-    {
-      day: 'Fri',
-      min: 10,
-      max: 20
-    },
-    {
-      day: 'Sat',
-      min: 13,
-      max: 14
-    },
-  ];
-  constructor() { }
+  forecast: WeatherForecast[];
+  constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
+    const location = 'makerere university';
+    this.weatherService.getForecast(location).subscribe((data) => {
+      this.forecast = data;
+    });
   }
 
+  get currentWeather(): WeatherForecast {
+    return this.forecast ? this.forecast[0] : null;
+  }
 }

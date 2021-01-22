@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-8" *ngIf="restaurant">
+    <h3>{{ restaurant.name }} - Menu</h3>
+    <div class="row">
+      <div *ngFor="let menu of restaurant.menus" class="col-sm-6">
+        <div class="card h-100 m-0">
+          <div class="card-body row p-2">
+            <div class="col-6">
+              <h5>{{ menu.name }}</h5>
+              <div class="text-bold text-lg text-warning">
+                Shs. {{ menu.price |number }}
+              </div>
+              <div class="mt-3 text-muted text-sm">
+                {{ menu.description }}
+              </div>
+            </div>
+            <div class="col-6">
+              <img class="img-fluid" [src]="baseUrl + menu.id + '/poster/'" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card card-primary mt-5">
+      <div class="card-header">
+        <h3 class="card-title">
+          Location and Contact Details
+        </h3>
+      </div>
+      <div class="card-body p-1">
+        <app-map [mapPins]="locationPins" [zoom]="19"></app-map>
+      </div>
+      <div class="footer p-2">
+        <div>
+          <i class="fa fa-phone"></i> {{ restaurant.phone }}
+        </div>
+        <div>
+          <i class="fa fa-envelope"></i> {{ restaurant.email }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

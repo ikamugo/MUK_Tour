@@ -1,15 +1,22 @@
-<div class="card">
+<div class="card h-100">
   <div class="card-body p-1">
-    <h5 class="text-center">{{ name }}</h5>
+    <h5 class="text-center">{{ forecast.date | date: "EEE, MMM dd" }}</h5>
     <img
-      src="assets/images/weather/weezle_cloud_sun.png"
+      [src]="
+        'assets/images/weather/' +
+        forecast.forecastWeather.condition.code +
+        '.png'
+      "
       style="max-width: 100%"
     />
+    <div class="text-bold text-center my-1">
+      {{ forecast.forecastWeather.condition.text }}
+    </div>
     <div class="float-left text-sm text-primary">
-      {{ min }}<span>&#176;</span>C
+      Low {{ forecast.forecastWeather.low }}<span>&#176;</span>C
     </div>
     <div class="float-right text-sm text-danger">
-      {{ max }}<span>&#176;</span>C
+     High {{ forecast.forecastWeather.high }}<span>&#176;</span>C
     </div>
   </div>
 </div>

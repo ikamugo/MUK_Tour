@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-md-5" *ngIf="scheduledEvent">
+    <img
+      *ngFor="let item of scheduledEvent.posters"
+      class="img-thumbnail mb-3"
+      [src]="postersBaseUrl + item"
+    />
+  </div>
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" *ngIf="scheduledEvent">
+          <i class="fa fa-calendar-alt"></i>
+          Scheduled Event
+        </h4>
+      </div>
+      <div class="card-body p-0">
+        <table class="table" *ngIf="scheduledEvent">
+          <tr>
+            <th>Title</th>
+            <td>
+              {{ scheduledEvent.title }}
+            </td>
+          </tr>
+          <tr>
+            <th>Category</th>
+            <td>
+              {{ scheduledEvent.category }}
+            </td>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <td>
+              {{ scheduledEvent.date | date }}
+            </td>
+          </tr>
+          <tr>
+            <th>Time</th>
+            <td>
+              {{ scheduledEvent.startTime | time }} -
+              {{ scheduledEvent.endTime | time }}
+            </td>
+          </tr>
+          <tr>
+            <th>Price</th>
+            <td>
+              <span
+                *ngIf="scheduledEvent.price > 0; else freeEvent"
+                class="badge badge-primary"
+              >
+                Shs. {{ scheduledEvent.price | number }}
+              </span>
+              <ng-template #freeEvent>
+                <span class="badge badge-success"> Free </span>
+              </ng-template>
+            </td>
+          </tr>
+          <tr>
+            <th>Details</th>
+            <td>
+              {{ scheduledEvent.description }}
+            </td>
+          </tr>
+          <tr>
+            <th>Venue</th>
+            <td>
+              {{ scheduledEvent.venue.name }} ({{ scheduledEvent.venue.type }})
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <app-map
+                [mapPins]="pinLocations"
+              ></app-map>
+            </td>
+          </tr>
+          <tr *ngIf="forecast">
+            <td colspan="2">
+              <h6>Weather Forecast</h6>
+              <app-current-conditions [forecast]="forecast"></app-current-conditions>
+            </td>
+          </tr>
+          <tr>
+            <th>Organizer</th>
+            <td>
+              {{ scheduledEvent.organizer }}
+              <ul class="list-unstyled">
+                <li *ngFor="let item of scheduledEvent.organizerContacts">
+                  <i class="mr-2" [class]="getContactIcon(item.type)"></i>
+                  {{ item.contact }}
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card-footer">
+        <div class="justify-content-between">
+          <button class="btn btn-primary">
+            <i class="fa fa-calendar-check"></i> Register
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

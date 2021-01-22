@@ -1,1 +1,17 @@
-<p>list-providers works!</p>
+<div class="row">
+  <div class="col-2">
+    <div class="card p-0">
+      <div class="list-group">
+        <a
+          *ngFor="let item of categories$ | async"
+          [routerLink]="[item]"
+          class="list-group-item list-group-item-action p-2"
+          >{{ item | titlecase }}</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="col-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>
